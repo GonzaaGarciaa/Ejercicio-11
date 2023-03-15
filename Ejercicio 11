@@ -1,0 +1,31 @@
+import sqlite3 as sq
+
+coon = sq.connect('ej1.db') # Me conecto a la base de datos (siempre igualo a una variable)
+cursor = coon.cursor()   # Creo el cursor
+
+cursor.execute("CREATE TABLE Alumnos(id INT, Nombre VARCHAR, Apellido VARCHAR)")
+
+cursor.execute("INSERT INTO Alumnos VALUES (1, 'Gonzalo', 'Garcia')")
+cursor.execute("INSERT INTO Alumnos VALUES (2, 'Maria', 'Gonzales')")
+cursor.execute("INSERT INTO Alumnos VALUES (3, 'Florencia', 'Belen')")
+cursor.execute("INSERT INTO Alumnos VALUES (4, 'Marcelo', 'Garcia')")
+cursor.execute("INSERT INTO Alumnos VALUES (5, 'Luis', 'Garcia')")
+cursor.execute("INSERT INTO Alumnos VALUES (6, 'Rosa', 'Fraccaro')")
+cursor.execute("INSERT INTO Alumnos VALUES (7, 'Nilda', 'Rueda')")
+cursor.execute("INSERT INTO Alumnos VALUES (8, 'Nicolas', 'Martinez')")
+
+# Una vez que ya se creo la tabla y se insertaron los datos tendria que borrarlos o buscar la forma de que
+# no se vuelvan a ejecutar
+
+
+# Comiteamos los insert a la base de datos
+coon.commit() 
+
+# Hacemos la consulta
+cursor.execute("SELECT * FROM Alumnos WHERE id = 5")
+
+filas = cursor.fetchall()
+print(filas)
+
+
+coon.close()
